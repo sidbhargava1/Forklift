@@ -17,7 +17,10 @@ def wait_for_db(max_retries: int = 30, delay_seconds: int = 2) -> None:
             print("Database is ready.")
             return
         except OperationalError:
-            print(f"Database not ready (attempt {attempt}/{max_retries}). Retrying in {delay_seconds}s...")
+            print(
+                f"Database not ready (attempt {attempt}/{max_retries}). "
+                f"Retrying in {delay_seconds}s..."
+            )
             time.sleep(delay_seconds)
 
     raise RuntimeError("Database did not become available in time.")

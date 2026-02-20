@@ -44,11 +44,14 @@ export const App = () => {
   return (
     <main className="page">
       <section className="hero">
-        <p className="eyebrow">FastAPI + React + Postgres + Redis + Auth0 + OpenAI</p>
+        <p className="eyebrow">
+          FastAPI + React + Postgres + Redis + Auth0 + OpenAI
+        </p>
         <h1>Codex App Starter</h1>
         <p className="subtitle">
-          This template provides infrastructure and reusable connectors only. Product-specific APIs and UI are
-          intentionally left for your app layer.
+          This template provides infrastructure and reusable connectors only.
+          Product-specific APIs and UI are intentionally left for your app
+          layer.
         </p>
       </section>
 
@@ -63,7 +66,9 @@ export const App = () => {
           </button>
         </div>
         {healthResult ? <pre className="code-block">{healthResult}</pre> : null}
-        {integrationsResult ? <pre className="code-block">{integrationsResult}</pre> : null}
+        {integrationsResult ? (
+          <pre className="code-block">{integrationsResult}</pre>
+        ) : null}
       </section>
 
       <section className="panel">
@@ -77,10 +82,18 @@ export const App = () => {
         </p>
 
         <div className="panel-row actions">
-          <button type="button" onClick={auth.login} disabled={!auth.enabled || auth.isAuthenticated}>
+          <button
+            type="button"
+            onClick={auth.login}
+            disabled={!auth.enabled || auth.isAuthenticated}
+          >
             Log in
           </button>
-          <button type="button" onClick={auth.logout} disabled={!auth.enabled || !auth.isAuthenticated}>
+          <button
+            type="button"
+            onClick={auth.logout}
+            disabled={!auth.enabled || !auth.isAuthenticated}
+          >
             Log out
           </button>
           <button type="button" onClick={onLoadClaims}>

@@ -59,15 +59,25 @@ class LLMClient:
             return
 
     def _cache_key(self, prompt_name: str, prompt_text: str, input_text: str) -> str:
-        digest_input = f"{self.settings.openai_model}:{prompt_name}:{prompt_text}:{input_text}".encode(
-            "utf-8"
+        digest_source = ":".join(
+            [
+                self.settings.openai_model,
+                prompt_name,
+                prompt_text,
+                input_text,
+            ]
         )
+        digest_input = digest_source.encode("utf-8")
         digest = hashlib.sha256(digest_input).hexdigest()
         return f"llm:completion:{digest}"
 
     async def generate(self, prompt_name: str, input_text: str) -> dict[str, Any]:
         prompt_text = load_prompt(prompt_name)
-        cache_key = self._cache_key(prompt_name=prompt_name, prompt_text=prompt_text, input_text=input_text)
+        cache_key = self._cache_key(
+            prompt_name=prompt_name,
+            prompt_text=prompt_text,
+            input_text=input_text,
+        )
 
         cached = await self._get_cache(cache_key)
         if cached:
@@ -79,7 +89,9 @@ class LLMClient:
 
         if not self._openai_client:
             return {
-                "output_text": "OPENAI_API_KEY is not configured. Set it in .env to enable live LLM responses.",
+                "output_text": (
+                    "OPENAI_API_KEY is not configured. Set it in .env to enable live LLM responses."
+                ),
                 "model": "not-configured",
                 "cached": False,
             }
