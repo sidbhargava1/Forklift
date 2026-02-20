@@ -1,0 +1,1 @@
+Given the user's input, produce a concise product brief with goals, risks, and next actions.
