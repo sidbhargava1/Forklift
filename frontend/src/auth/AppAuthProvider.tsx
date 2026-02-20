@@ -10,14 +10,8 @@ type Props = {
 };
 
 const AuthContextBridge = ({ children }: Props) => {
-  const {
-    isLoading,
-    isAuthenticated,
-    user,
-    loginWithRedirect,
-    logout,
-    getAccessTokenSilently,
-  } = useAuth0();
+  const { isLoading, isAuthenticated, user, loginWithRedirect, logout, getAccessTokenSilently } =
+    useAuth0();
 
   const state = useMemo<AuthState>(
     () => ({
@@ -47,14 +41,7 @@ const AuthContextBridge = ({ children }: Props) => {
         }
       },
     }),
-    [
-      isLoading,
-      isAuthenticated,
-      user,
-      loginWithRedirect,
-      logout,
-      getAccessTokenSilently,
-    ],
+    [isLoading, isAuthenticated, user, loginWithRedirect, logout, getAccessTokenSilently],
   );
 
   return <AuthContext.Provider value={state}>{children}</AuthContext.Provider>;
@@ -62,11 +49,7 @@ const AuthContextBridge = ({ children }: Props) => {
 
 export const AppAuthProvider = ({ children }: Props) => {
   if (!env.enableAuth || !env.auth0Domain || !env.auth0ClientId) {
-    return (
-      <AuthContext.Provider value={disabledAuthState}>
-        {children}
-      </AuthContext.Provider>
-    );
+    return <AuthContext.Provider value={disabledAuthState}>{children}</AuthContext.Provider>;
   }
 
   return (
