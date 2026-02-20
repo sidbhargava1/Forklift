@@ -1,0 +1,36 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+frontend/node_modules/
+frontend/dist/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Database / cache volumes
+*.sqlite3
+
+# Build
+build/
+dist/
