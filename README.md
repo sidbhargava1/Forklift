@@ -63,6 +63,12 @@ docker compose up --build
 - Backend OpenAPI: http://localhost:8000/docs
 - Backend health: http://localhost:8000/api/v1/health
 
+## Hot Reload In Docker
+
+- Backend runs with Uvicorn `--reload` and polling enabled for mounted volumes.
+- Frontend runs Vite dev server with polling enabled for mounted volumes.
+- Code changes in `backend/`, `frontend/`, and `prompts/` should refresh automatically without rebuilding images.
+
 ## Environment variables
 
 All config is centralized in `.env` (copy from `.env.example`). Key groups:
